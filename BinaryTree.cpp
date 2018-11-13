@@ -21,8 +21,13 @@ BinaryTree::~BinaryTree()
 //to be implemented.
 bool BinaryTree::add(int value)
 {
-	
-	return false;
+	if (headptr == nullptr) {
+		headptr = new BinaryNode();
+		headptr->value = value;
+		return true;
+	}
+	BinaryNode * cur = headptr;
+	return addHelper(cur, value);
 }
 
 //Not completed yet.
@@ -53,6 +58,35 @@ void BinaryTree::setBrother(BinaryNode * root)
 			s1 = s2;
 			s2 = temp;
 		}
+	}
+}
+
+//goes through tree recursively and finds position to add
+//node if the node does not already exist in the tree.
+bool BinaryTree::addHelper(BinaryNode* cur, int value)
+{
+	if (headptr->value > value) {
+		if (headptr->leftptr != nullptr) {
+			return addHelper(cur->leftptr, value);
+		}
+		else {
+			headptr->leftptr = new BinaryNode();
+			headptr->leftptr->value = value;
+			return true;
+		}
+	}
+	else if (headptr->value < value) {
+		if (headptr->rightptr != nullptr) {
+			return addHelper(cur->rightptr, value);
+		}
+		else {
+			headptr->leftptr = new BinaryNode();
+			headptr->leftptr->value = value;
+			return true;
+		}
+	}
+	else {
+		return false;
 	}
 }
 
