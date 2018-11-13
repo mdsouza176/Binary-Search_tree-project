@@ -28,6 +28,7 @@ private:
 	//sets brother for each of the binary nodes in the tree.
 	void setBrother(BinaryNode* root);
 	BinaryNode* headptr{ nullptr };
+	bool addHelper(BinaryNode* cur, int value); //recursive helper for add function.
 
 };
 
