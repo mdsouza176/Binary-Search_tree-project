@@ -30,14 +30,24 @@ bool BinaryTree::add(int value)
 	return addHelper(cur, value);
 }
 
+std::string BinaryTree::inOrderTraverse()
+{
+	std::string output = "InOrder traversal: ";
+	if (headptr == nullptr) {
+		return output;
+	}
+	BinaryNode* cur = headptr;
+	return inOrderHelper(cur, output);
+}
+
 //Not completed yet.
 void BinaryTree::setBrother(BinaryNode * root)
 {
 	if (root == nullptr) {
 		return;
 	}
-	std::queue<BinaryNode*> *s1;
-	std::queue<BinaryNode*> *s2;
+	std::queue<BinaryNode*> *s1 = new std::queue<BinaryNode*>();
+	std::queue<BinaryNode*> *s2 = new std::queue<BinaryNode*>();
 	std::queue<BinaryNode*> *temp;
 	s1->push(root);
 	while (!s1->empty() && !s2->empty()) {
@@ -65,28 +75,40 @@ void BinaryTree::setBrother(BinaryNode * root)
 //node if the node does not already exist in the tree.
 bool BinaryTree::addHelper(BinaryNode* cur, int value)
 {
-	if (headptr->value > value) {
-		if (headptr->leftptr != nullptr) {
+	if (cur->value > value) {
+		if (cur->leftptr != nullptr) {
 			return addHelper(cur->leftptr, value);
 		}
 		else {
-			headptr->leftptr = new BinaryNode();
-			headptr->leftptr->value = value;
+			cur->leftptr = new BinaryNode();
+			cur->leftptr->value = value;
 			return true;
 		}
 	}
-	else if (headptr->value < value) {
-		if (headptr->rightptr != nullptr) {
+	else if (cur->value < value) {
+		if (cur->rightptr != nullptr) {
 			return addHelper(cur->rightptr, value);
 		}
 		else {
-			headptr->leftptr = new BinaryNode();
-			headptr->leftptr->value = value;
+			cur->rightptr = new BinaryNode();
+			cur->rightptr->value = value;
 			return true;
 		}
 	}
 	else {
 		return false;
 	}
+}
+
+std::string BinaryTree::inOrderHelper(BinaryNode* cur, std::string &s)
+{
+	if (cur == nullptr) {
+		return s;
+	}
+	inOrderHelper(cur->leftptr, s);
+	s += std::to_string(cur->value);
+	s += " ";
+	inOrderHelper(cur->rightptr, s);
+	return s;
 }
 
