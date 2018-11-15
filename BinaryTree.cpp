@@ -1,6 +1,6 @@
 /*
   Melroy Dsouza
-  last edited: Nov 14, 2018
+  last edited: Nov 15, 2018
   Binary tree .cpp file
 */
 
@@ -38,6 +38,51 @@ std::string BinaryTree::inOrderTraverse()
 	}
 	BinaryNode* cur = headptr;
 	return inOrderHelper(cur, output);
+}
+
+std::string BinaryTree::preOrderTraverse()
+{
+	std::string output = "Pre-Order Traversal: ";
+	if (headptr == nullptr) {
+		return output;
+	}
+	BinaryNode* cur = headptr;
+	return preOrderHelper(cur, output);
+}
+
+std::string BinaryTree::postOrderTraverse()
+{
+	std::string output = "Post-Order Traversal: ";
+
+	if (headptr == nullptr) {
+		return output;
+	}
+	BinaryNode* cur = headptr;
+	return postOrderHelper(cur, output);
+}
+
+std::string BinaryTree::levelOrderTraverse()
+{
+	std::string output = "Level-Order Traverse: ";
+	if (headptr == nullptr) {
+		return output;
+	}
+	std::queue<BinaryNode*> list;
+	list.push(headptr);
+	while (!list.empty()) {
+		BinaryNode* top = list.front();
+		list.pop();
+		if (top->leftptr != nullptr) {
+			list.push(top->leftptr);
+		}
+		if (top->rightptr != nullptr) {
+			list.push(top->rightptr);
+		}
+		output += std::to_string(top->value);
+		output += " ";
+		
+	}
+	return output;
 }
 
 //Not completed yet.
@@ -109,6 +154,30 @@ std::string BinaryTree::inOrderHelper(BinaryNode* cur, std::string &s)
 	s += std::to_string(cur->value);
 	s += " ";
 	inOrderHelper(cur->rightptr, s);
+	return s;
+}
+
+std::string BinaryTree::preOrderHelper(BinaryNode * cur, std::string & s)
+{
+	if (cur == nullptr) {
+		return s;
+	}
+	s += std::to_string(cur->value);
+	s += " ";
+	preOrderHelper(cur->leftptr, s);
+	preOrderHelper(cur->rightptr, s);
+	return s;
+}
+
+std::string BinaryTree::postOrderHelper(BinaryNode * cur, std::string & s)
+{
+	if (cur == nullptr) {
+		return s;
+	}
+	postOrderHelper(cur->leftptr, s);
+	postOrderHelper(cur->rightptr, s);
+	s += std::to_string(cur->value);
+	s += " ";
 	return s;
 }
 
