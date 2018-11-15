@@ -1,9 +1,16 @@
+/*
+  Melroy Dsouza
+  Last Edited: November 15, 2018
+  Main driver file for testing all BinaryTree methods.
+*/
+
+
 #include <iostream>
 #include "BinaryTree.h"
 #include <string>
 using namespace std;
 
-//test adding nodes to tree + inorderTraversal method.
+//test adding nodes to tree + all Traversal methods.
 void testBinaryTreeAdd() {
 	BinaryTree r1;
 	r1.add(3);
@@ -16,7 +23,9 @@ void testBinaryTreeAdd() {
 	r1.add(-1);
 	r1.add(6);
 	cout << r1.inOrderTraverse() << endl;
-
+	cout << r1.preOrderTraverse() << endl;
+	cout << r1.postOrderTraverse() << endl;
+	cout << r1.levelOrderTraverse() << endl;
 }
 
 int main() {
