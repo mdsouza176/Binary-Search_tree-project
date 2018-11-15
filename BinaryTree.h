@@ -1,6 +1,6 @@
 /*
   Melroy Dsouza
-  Last edited: Nov 14, 2018
+  Last edited: Nov 15, 2018
   Binary tree .h file
 */
 
@@ -31,5 +31,7 @@ private:
 	BinaryNode* headptr{ nullptr };
 	bool addHelper(BinaryNode* cur, int value); //recursive helper for add function.
 	std::string inOrderHelper(BinaryNode* cur, std::string &s);
+	std::string preOrderHelper(BinaryNode* cur, std::string &s);
+	std::string postOrderHelper(BinaryNode *cur, std::string &s);
 };
 
