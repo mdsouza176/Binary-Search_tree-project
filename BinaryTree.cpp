@@ -1,6 +1,6 @@
 /*
   Melroy Dsouza
-  last edited: Nov 15, 2018
+  last edited: Nov 16, 2018
   Binary tree .cpp file
 */
 
@@ -17,6 +17,8 @@ BinaryTree::BinaryTree()
 
 BinaryTree::~BinaryTree()
 {
+	this->clear(headptr);
+	headptr = nullptr;
 }
 //to be implemented.
 bool BinaryTree::add(int value)
@@ -83,6 +85,18 @@ std::string BinaryTree::levelOrderTraverse()
 		
 	}
 	return output;
+}
+
+void BinaryTree::printTree()
+{
+	std::cout << "Print Sideways: " << std::endl;
+	printSideways(headptr, 0);
+}
+
+void BinaryTree::deleteAll()
+{
+	clear(headptr);
+	headptr = nullptr;
 }
 
 //Not completed yet.
@@ -179,5 +193,30 @@ std::string BinaryTree::postOrderHelper(BinaryNode * cur, std::string & s)
 	s += std::to_string(cur->value);
 	s += " ";
 	return s;
+}
+
+void BinaryTree::printSideways(BinaryNode * cur, int lvl)
+{
+	if (cur != NULL) {
+		lvl++;
+		printSideways(cur->rightptr, lvl);
+		for (int i = lvl; i >= 0; i--) {
+			std::cout << "    ";
+		}
+		std::cout << cur->value << std::endl;
+
+		printSideways(cur->leftptr, lvl);
+	}
+}
+
+void BinaryTree::clear(BinaryNode * cur)
+{
+	if (cur == nullptr) {
+		return;
+	}
+	clear(cur->leftptr);
+	clear(cur->rightptr);
+	delete cur;
+	cur = nullptr;
 }
 
