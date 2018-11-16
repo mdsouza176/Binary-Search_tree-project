@@ -1,6 +1,6 @@
 /*
   Melroy Dsouza
-  Last Edited: November 15, 2018
+  Last Edited: Nov 16, 2018
   Main driver file for testing all BinaryTree methods.
 */
 
@@ -28,10 +28,41 @@ void testBinaryTreeAdd() {
 	cout << r1.levelOrderTraverse() << endl;
 }
 
+
+//test print sideways the binary tree.
+void testBinaryPrintTree() {
+	BinaryTree r1;
+	r1.printTree();
+	r1.add(3);
+	r1.printTree();
+	r1.add(4);
+	r1.add(99);
+	r1.add(-2);
+	r1.add(-1);
+	r1.add(-3);
+	r1.printTree();
+}
+void testBinaryTreeClear() {
+	BinaryTree r1;
+	r1.printTree();
+	r1.deleteAll();
+	r1.printTree();
+	r1.add(3);
+	r1.printTree();
+	r1.deleteAll();
+	r1.printTree();
+	r1.add(3); r1.add(4); r1.add(-2); r1.add(8); r1.add(88);
+	r1.printTree();
+	r1.deleteAll();
+	r1.printTree();
+}
 int main() {
 	
 
 	testBinaryTreeAdd();
+	testBinaryPrintTree();
+	testBinaryTreeClear();
+
 	cin.get(); //stop cmd from exiting after running code.
 	
 	return 0;
