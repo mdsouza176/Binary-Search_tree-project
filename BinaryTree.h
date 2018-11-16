@@ -1,24 +1,28 @@
 /*
   Melroy Dsouza
-  Last edited: Nov 15, 2018
+  Last edited: Nov 16, 2018
   Binary tree .h file
 */
 
 #pragma once
 #include <queue>
 #include <string>
+#include <iostream>
 class BinaryTree
 {
 public:
 	BinaryTree();
 	~BinaryTree();
 	bool add(int value);
-	void clear(); //clears all nodes in tree.
 	//Traverse nodes in tree based in the traversal and add node values to string and return it.
 	std::string inOrderTraverse();
 	std::string preOrderTraverse();
 	std::string postOrderTraverse();
 	std::string levelOrderTraverse(); 
+	//print out all nodes in tree.
+	void printTree();
+	//delete all nodes in tree.
+	void deleteAll();
 private:
 	struct BinaryNode {
 		BinaryNode* leftptr{ nullptr };
@@ -33,5 +37,7 @@ private:
 	std::string inOrderHelper(BinaryNode* cur, std::string &s);
 	std::string preOrderHelper(BinaryNode* cur, std::string &s);
 	std::string postOrderHelper(BinaryNode *cur, std::string &s);
+	void printSideways(BinaryNode* cur, int lvl);
+	void clear(BinaryNode* cur); //clears all nodes in tree.
 };
 
